@@ -1,13 +1,7 @@
 
 #include "Algorithms.hpp"
 
-using namespace ariel;
 
-
-Algorithms::Algorithms(/* args */)
-{
-}
-
-Algorithms::~Algorithms()
-{
+bool ariel::Algorithms::isConnected() {
+  return false;
 }

@@ -1,18 +1,13 @@
 #ifndef ALGORITHMS_H
 #define ALGORITHMS_H
-#include "Graph.hpp"
 
-namespace ariel{
-class Algorithms
+namespace ariel
 {
-private:
-    /* data */
-public:
-    Algorithms(/* args */);
-    ~Algorithms();
-};
+    class Algorithms {
+    public:
+        bool isConnected();
 
-
+    };
 }
 
 #endif

@@ -1,6 +1,7 @@
 
 #include "Graph.hpp"
 
+ariel::Graph::Graph() {}
 
 ariel::Graph::Graph(int vertices) : V(vertices) {
     adjMatrix.resize((unsigned long)V, std::vector<int>((unsigned long)V, 0)); // Initialize the matrix with 0s
