@@ -10,7 +10,7 @@ OBJECTS=$(subst .cpp,.o,$(SOURCES))
 run: demo
 	./$^
 
-demo: Demo.o $(OBJECTS)
+demo: Demo.o $(filter-out TestCounter.o Test.o, $(OBJECTS))
 	$(CXX) $(CXXFLAGS) $^ -o demo
 
 test: TestCounter.o Test.o $(OBJECTS)
