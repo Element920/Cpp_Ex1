@@ -10,7 +10,7 @@ ariel::Graph::Graph(int vertices) : V(vertices) {
 void ariel::Graph::loadGraph(std::vector<std::vector<int>>& matrix) {
     if (matrix.size() != V || matrix[0].size() != V) {
         std::cout << "Error: Invalid adjacency matrix dimensions." << std::endl;
-        return;
+        throw;
     }
 
     adjMatrix = matrix;
