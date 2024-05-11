@@ -22,6 +22,8 @@ int main()
     g.loadGraph(graph); // Load the graph to the object.
 
     g.printGraph();                                    // Should print: "Graph with 3 vertices and 4 edges."
+    std::cout << ariel::Algorithms::isConnected(g) << std::endl;
+    return 0;
     // cout << Algorithms::isConnected(g) << endl;        // Should print: "1" (true).
     // cout << Algorithms::shortestPath(g, 0, 2) << endl; // Should print: 0->1->2.
     // cout << Algorithms::isContainsCycle(g) << endl;    // Should print: "0" (false).
