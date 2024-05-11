@@ -4,16 +4,16 @@
 
 using namespace std;
 
-// TEST_CASE("Test isConnected")
-// {
-//     ariel::Graph g;
-//     vector<vector<int>> graph = {
-//         {0, 1, 0},
-//         {1, 0, 1},
-//         {0, 1, 0}};
-//     g.loadGraph(graph);
-//     CHECK(ariel::Algorithms::isConnected(g) == true);
-
+TEST_CASE("Test isConnected")
+{
+    ariel::Graph g;
+    vector<vector<int>> graph = {
+        {0, 1, 0},
+        {1, 0, 1},
+        {0, 1, 0}};
+    g.loadGraph(graph);
+    CHECK(ariel::Algorithms::isConnected(g) == true);
+}
 //     vector<vector<int>> graph2 = {
 //         {0, 1, 1, 0, 0},
 //         {1, 0, 1, 0, 0},
@@ -90,14 +90,14 @@ using namespace std;
 //     g.loadGraph(graph3);
 //     CHECK(ariel::Algorithms::isBipartite(g) == "The graph is bipartite: A={0, 2, 4}, B={1, 3}");
 // }
-TEST_CASE("Test invalid graph")
-{
-    ariel::Graph g;
-    vector<vector<int>> graph = {
-        {0, 1, 2, 0},
-        {1, 0, 3, 0},
-        {2, 3, 0, 4},
-        {0, 0, 4, 0},
-        {0, 0, 0, 5}};
-    CHECK_THROWS(g.loadGraph(graph));
-}
+// TEST_CASE("Test invalid graph")
+// {
+//     ariel::Graph g;
+//     vector<vector<int>> graph = {
+//         {0, 1, 2, 0},
+//         {1, 0, 3, 0},
+//         {2, 3, 0, 4},
+//         {0, 0, 4, 0},
+//         {0, 0, 0, 5}};
+//     CHECK_THROWS(g.loadGraph(graph));
+// }

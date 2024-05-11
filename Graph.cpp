@@ -3,15 +3,12 @@
 
 ariel::Graph::Graph() {}
 
-ariel::Graph::Graph(int vertices) : V(vertices) {
-    adjMatrix.resize((unsigned long)V, std::vector<int>((unsigned long)V, 0)); // Initialize the matrix with 0s
-}
 
 void ariel::Graph::loadGraph(std::vector<std::vector<int>>& matrix) {
-    if (matrix.size() != V || matrix[0].size() != V) {
-        std::cout << "Error: Invalid adjacency matrix dimensions." << std::endl;
-        throw;
-    }
+    // if (matrix.size() != V || matrix[0].size() != V) {
+    //     std::cout << "Error: Invalid adjacency matrix dimensions." << std::endl;
+    //     return;
+    // }
 
     adjMatrix = matrix;
 }

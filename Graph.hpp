@@ -11,7 +11,6 @@ namespace ariel {
 
             public:
                 Graph();
-                Graph(int vertices);
                 void loadGraph(std::vector<std::vector<int>>& matrix);
                 void printGraph();
         };
