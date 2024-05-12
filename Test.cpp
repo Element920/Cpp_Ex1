@@ -13,16 +13,16 @@ TEST_CASE("Test isConnected")
         {0, 1, 0}};
     g.loadGraph(graph);
     CHECK(ariel::Algorithms::isConnected(g) == true);
+
+    vector<vector<int>> graph2 = {
+        {0, 1, 1, 0, 0},
+        {1, 0, 1, 0, 0},
+        {1, 1, 0, 1, 0},
+        {0, 0, 1, 0, 0},
+        {0, 0, 0, 0, 0}};
+    g.loadGraph(graph2);
+    CHECK(ariel::Algorithms::isConnected(g) == false);
 }
-//     vector<vector<int>> graph2 = {
-//         {0, 1, 1, 0, 0},
-//         {1, 0, 1, 0, 0},
-//         {1, 1, 0, 1, 0},
-//         {0, 0, 1, 0, 0},
-//         {0, 0, 0, 0, 0}};
-//     g.loadGraph(graph2);
-//     CHECK(ariel::Algorithms::isConnected(g) == false);
-// }
 
 // TEST_CASE("Test shortestPath")
 // {
