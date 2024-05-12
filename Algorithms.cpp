@@ -25,5 +25,11 @@ bool ariel::Algorithms::isConnected(ariel::Graph g) {
           }
       }
   }
-  return std::all_of(visited.begin(), visited.end(), [](bool v) { return v; });
+  std::vector<bool>::iterator iter = visited.begin();
+  for (; iter < visited.end(); iter++) {
+    if (!*iter) {
+      return false;
+    }
+  }
+  return true;
 }
