@@ -5,9 +5,10 @@
 
 namespace ariel
 {
-    namespace Algorithms {
-        bool isConnected(ariel::Graph g);
-        bool isContainsCycle(ariel::Graph g);
+    class Algorithms {
+    public:
+        static bool isConnected(ariel::Graph g);
+        static bool isContainsCycle(ariel::Graph g);
         // std::string shortestPath(ariel::Graph g, int start_node, int end_node);
     };
 }
