@@ -14,6 +14,13 @@ TEST_CASE("Test isConnected")
     g.loadGraph(graph);
     CHECK(ariel::Algorithms::isConnected(g) == true);
 
+    vector<vector<int>> directedGraph = {
+        {0, 1, 0},
+        {1, 0, 1},
+        {0, 0, 0}};
+    g.loadGraph(directedGraph);
+    CHECK(ariel::Algorithms::isConnected(g) == true);
+
     vector<vector<int>> graph2 = {
         {0, 1, 1, 0, 0},
         {1, 0, 1, 0, 0},
@@ -60,6 +67,15 @@ TEST_CASE("Test isContainsCycle")
         {0, 0, 1, 0, 0},
         {0, 0, 0, 0, 0}};
     g.loadGraph(graph2);
+    CHECK(ariel::Algorithms::isContainsCycle(g) == true);
+
+        vector<vector<int>> directedGraph = {
+        {0, 1, 0, 0, 0},
+        {0, 0, 1, 0, 0},
+        {1, 0, 0, 1, 0},
+        {0, 0, 1, 0, 0},
+        {0, 0, 0, 0, 0}};
+    g.loadGraph(directedGraph);
     CHECK(ariel::Algorithms::isContainsCycle(g) == true);
 }
 // TEST_CASE("Test isBipartite")
