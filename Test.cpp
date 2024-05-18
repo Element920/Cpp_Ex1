@@ -117,3 +117,21 @@ TEST_CASE("Test invalid graph")
         {0, 0, 0, 5}};
     CHECK_THROWS(g.loadGraph(graph));
 }
+TEST_CASE("Test negativeCycle")
+{
+    ariel::Graph g;
+    vector<vector<int>> graph1 = {
+        {0, -2, 0, 0},
+        {1, 0, 0, 0},
+        {0, -6, 0, 1},
+        {0, 0, 0, 0}};
+    g.loadGraph(graph1);
+    CHECK(ariel::Algorithms::negativeCycle(g) == true);
+
+    vector<vector<int>> graph2 = {
+        {0, 2, 0},
+        {0, 1, -3},
+        {0, 0, 0}};
+    g.loadGraph(graph2);
+    CHECK(ariel::Algorithms::negativeCycle(g) == false);
+}

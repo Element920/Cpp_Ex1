@@ -197,3 +197,34 @@ std::string ariel::Algorithms::isBipartite(ariel::Graph g) {
   ss << "}";
   return ss.str();
 }
+
+#include <limits>
+
+bool ariel::Algorithms::negativeCycle(const ariel::Graph g) {
+  unsigned int numVertices = g.getNumVertices();
+  std::vector<int> distance(numVertices, std::numeric_limits<int>::max());
+  distance[0] = 0; // Distance from source to itself is 0
+
+  // Relaxation process (V-1 iterations)
+  for (unsigned int i = 0; i < numVertices - 1; ++i) {
+    for (unsigned int u = 0; u < numVertices; ++u) {
+      for (unsigned int v = 0; v < numVertices; ++v) {
+        // Relax if edge exists and total weight is less than current distance
+        if (g.getEdgeWeight(u, v) != 0 && distance[u] + g.getEdgeWeight(u, v) < distance[v]) {
+          distance[v] = distance[u] + g.getEdgeWeight(u, v);
+        }
+      }
+    }
+  }
+
+  // Check for negative cycle in the Vth iteration
+  for (unsigned int u = 0; u < numVertices; ++u) {
+    for (unsigned int v = 0; v < numVertices; ++v) {
+      if (g.getEdgeWeight(u, v) != 0 && distance[u] + g.getEdgeWeight(u, v) < distance[v]) {
+        return true; // Negative cycle detected
+      }
+    }
+  }
+
+  return false; // No negative cycle found
+}

@@ -12,7 +12,7 @@ namespace ariel
     static bool isContainsCycle(ariel::Graph g);
     static std::string shortestPath(ariel::Graph g, uint startNode, uint endNode);
     static std::string isBipartite(ariel::Graph g);
-
+    static bool negativeCycle(const ariel::Graph g);
   };
 
   struct Node
