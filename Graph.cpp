@@ -25,6 +25,15 @@ void ariel::Graph::printGraph() {
     std::cout << edges << " edges." << std::endl;
 }
 
+int ariel::Graph::getEdgeWeight(unsigned int from, unsigned int to) const
+{
+    return adjMatrix[from][to];
+}
+
+unsigned int ariel::Graph::getNumVertices() const {
+    return adjMatrix.size();
+}
+
 std::vector<std::vector<int>> ariel::Graph::getAdjMatrix() {
     return adjMatrix;
 }

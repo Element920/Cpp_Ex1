@@ -13,6 +13,8 @@ namespace ariel {
             Graph();
             void loadGraph(std::vector<std::vector<int>>& matrix);
             void printGraph();
+            unsigned int getNumVertices() const;
+            int getEdgeWeight (unsigned int from, unsigned int to) const;
             std::vector<std::vector<int>> getAdjMatrix();
     };
 }
