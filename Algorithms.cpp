@@ -41,27 +41,26 @@ bool ariel::Algorithms::isConnected(ariel::Graph g) {
 }
 
 bool ariel::Algorithms::isContainsCycle(ariel::Graph g) {
-  std::vector<std::vector<int>> adj_matrix = g.getAdjMatrix();
-  uint num_nodes = adj_matrix.size();
-  uint start_node = 0;
+  uint numNodes = g.getNumVertices();
+  uint startNode = 0;
  
-  std::vector<bool> visited(num_nodes, false);
+  std::vector<bool> visited(numNodes, false);
   std::stack<uint> stack;
-  std::vector<int> parent(num_nodes, -1);
-  stack.push(start_node);
-  visited[start_node] = true;
+  std::vector<int> parent(numNodes, -1);
+  stack.push(startNode);
+  visited[startNode] = true;
 
   while (!stack.empty()) {
-    uint current = stack.top();
+    uint currentNode = stack.top();
     stack.pop();
 
-    for (uint neighbor = 0; neighbor < num_nodes; neighbor++) {
-      if (g.getEdgeWeight(current, neighbor) != 0) {
+    for (uint neighbor = 0; neighbor < numNodes; neighbor++) {
+      if (g.getEdgeWeight(currentNode, neighbor) != 0) {
         if (!visited[neighbor]) {
           visited[neighbor] = true;
-          parent[neighbor] = (int)current;
+          parent[neighbor] = (int)currentNode;
           stack.push(neighbor);
-        } else if (parent[current] != neighbor) {
+        } else if (parent[currentNode] != neighbor) {
           return true;
         }
       }
