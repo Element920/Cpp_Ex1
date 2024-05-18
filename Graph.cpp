@@ -17,8 +17,8 @@ void ariel::Graph::printGraph() {
     unsigned int numVertices = getNumVertices();
     std::cout << "Graph with " << numVertices << " vertices and ";
     int edges = 0;
-    for (uint i = 0; i < numVertices; ++i) {
-        for (uint j = i + 1; j < numVertices; ++j) {
+    for (unsigned int i = 0; i < numVertices; ++i) {
+        for (unsigned int j = 0; j < numVertices; ++j) {
             if (adjMatrix[i][j])
                 edges++;
         }
