@@ -6,7 +6,6 @@
 namespace ariel {
     class Graph {
         private:
-            int V; // Number of vertices
             std::vector<std::vector<int>> adjMatrix; // Adjacency matrix representation of the graph
 
         public:
@@ -15,7 +14,6 @@ namespace ariel {
             void printGraph();
             unsigned int getNumVertices() const;
             int getEdgeWeight (unsigned int from, unsigned int to) const;
-            std::vector<std::vector<int>> getAdjMatrix();
     };
 }
 #endif // GRAPH_H
