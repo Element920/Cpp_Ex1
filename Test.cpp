@@ -31,25 +31,25 @@ TEST_CASE("Test isConnected")
     CHECK(ariel::Algorithms::isConnected(g) == false);
 }
 
-// TEST_CASE("Test shortestPath")
-// {
-//     ariel::Graph g;
-//     vector<vector<int>> graph = {
-//         {0, 1, 0},
-//         {1, 0, 1},
-//         {0, 1, 0}};
-//     g.loadGraph(graph);
-//     CHECK(ariel::Algorithms::shortestPath(g, 0, 2) == "0->1->2");
+TEST_CASE("Test shortestPath")
+{
+    ariel::Graph g;
+    vector<vector<int>> graph = {
+        {0, 1, 0},
+        {1, 0, 1},
+        {0, 1, 0}};
+    g.loadGraph(graph);
+    CHECK(ariel::Algorithms::shortestPath(g, 0, 2) == "0->1->2");
 
-//     vector<vector<int>> graph2 = {
-//         {0, 1, 1, 0, 0},
-//         {1, 0, 1, 0, 0},
-//         {1, 1, 0, 1, 0},
-//         {0, 0, 1, 0, 0},
-//         {0, 0, 0, 0, 0}};
-//     g.loadGraph(graph2);
-//     CHECK(ariel::Algorithms::shortestPath(g, 0, 4) == "-1");
-// }
+    vector<vector<int>> graph2 = {
+        {0, 1, 1, 0, 0},
+        {1, 0, 1, 0, 0},
+        {1, 1, 0, 1, 0},
+        {0, 0, 1, 0, 0},
+        {0, 0, 0, 0, 0}};
+    g.loadGraph(graph2);
+    CHECK(ariel::Algorithms::shortestPath(g, 0, 4) == "-1");
+}
 TEST_CASE("Test isContainsCycle")
 {
     ariel::Graph g;

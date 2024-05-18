@@ -76,54 +76,57 @@ bool ariel::NodeComparator::operator()(const ariel::Node& a, const ariel::Node& 
   return a.distance > b.distance;
 }
 
-std::string shortestPath(ariel::Graph g, uint start_node, uint end_node) {
-  // std::vector<std::vector<int>> adj_matrix = g.getAdjMatrix();
-  // uint num_nodes = adj_matrix.size();
-  // std::vector<int> distance(num_nodes, std::numeric_limits<int>::max()); // Initialize distances to infinity
-  // std::vector<int> parent(num_nodes, -1); // Track parent for path reconstruction
-  // std::vector<bool> visited(num_nodes, false);
 
-  // distance[start_node] = 0; // Distance from source to itself is 0
-  // std::priority_queue<std::pair<uint, int>, std::vector<std::pair<uint, int>>, std::greater<std::pair<uint, int>>> pq;
-  // pq.push({0, start_node}); // Push source with distance 0
+std::string ariel::Algorithms::shortestPath(const ariel::Graph g, unsigned int startNode, unsigned int endNode) {
+  unsigned int numVertices = g.getNumVertices();
+  std::vector<bool> visited(numVertices, false);
+  std::vector<int> parent(numVertices, -1);
 
-  // while (!pq.empty()) {
-  //   std::pair<uint, int> u = pq.top(); // Extract vertex with minimum distance
-  //   pq.pop();
+  std::queue<unsigned int> queue;
+  queue.push(startNode);
+  visited[startNode] = true;
 
-  //   if (visited[u.first]) {
-  //     continue;
-  //   }
+  bool found = false;
+  while (!queue.empty() && !found) {
+    unsigned int u = queue.front();
+    queue.pop();
 
-  //   visited[u.first] = true;
+    for (unsigned int neighbor = 0; neighbor < numVertices; neighbor++) {
+      if (g.getEdgeWeight(u,neighbor) > 0 && !visited[neighbor]) {
+        visited[neighbor] = true;
+        parent[neighbor] = (int) u;
+        queue.push(neighbor);
 
-  //   for (uint v = 0; v < num_nodes; v++) {
-  //     if (adj_matrix[u.first][v] > 0 && !visited[v]) { // Check for valid edge and unvisited neighbor
-  //       int newDist = distance[u.first] + adj_matrix[u.first][v];
-  //       if (newDist < distance[v]) {
-  //         distance[v] = newDist;
-  //         parent[v] = u.first; // Update parent for path reconstruction
-  //         pq.push({distance[v], v});
-  //       }
-  //     }
-  //   }
-  // }
+        if (neighbor == endNode) {
+          found = true;
+          break;
+        }
+      }
+    }
+  }
 
-  // if (distance[end_node] == std::numeric_limits<int>::max()) {
-  //   return "-1"; // No path found
-  // }
+  if (!found) {
+    return "-1"; // No path found between startNode and endNode
+  }
 
-  // // Reconstruct the path string (reverse order)
-  // std::string path;
-  // uint current = end_node;
-  // while (current != -1) {
-  //   path = std::to_string(current) + " -> " + path;
-  //   current = parent[current];
-  // }
-  // path = path.substr(0, path.size() - 4); // Remove trailing " -> "
+  // Reconstruct path by backtracking from endNode
+  std::vector<unsigned int> path;
+  int current = (int) endNode;
+  while (current != -1) {
+    path.push_back((unsigned int) current);
+    current = parent[(size_t)current];
+  }
 
-  // return start_node == end_node ? std::to_string(start_node) : path; // Handle source-to-source case
-  return "-1";
+  std::stringstream ss;
+  std::reverse(path.begin(), path.end());
+  for(size_t i = 0; i < path.size(); ++i) {
+    if (i != 0) {
+      ss << "->";
+    }
+    ss << std::to_string(i);
+  }
+
+  return ss.str();
 }
 
 std::string ariel::Algorithms::isBipartite(ariel::Graph g) {
