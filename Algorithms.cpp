@@ -6,6 +6,8 @@
 #include <queue>
 #include <stack>
 #include <vector>
+#include <cstdlib>
+
 
 bool ariel::Algorithms::isConnected(ariel::Graph g) {
   uint numNodes = g.getNumVertices();
@@ -125,42 +127,53 @@ std::string shortestPath(ariel::Graph g, uint start_node, uint end_node) {
 }
 
 std::string ariel::Algorithms::isBipartite(ariel::Graph g) {
-  std::vector<std::vector<int>> adj_matrix = g.getAdjMatrix();
-  uint num_nodes = adj_matrix.size();
-  std::vector<int> color(num_nodes, -1); // -1: uncolored, 0/1: assigned color
-  std::vector<uint> set1, set2;
+  unsigned int numVertices = g.getNumVertices();
+  std::vector<int> color(numVertices, -1); // -1: uncolored, 0/1: assigned color
+  std::vector<unsigned int> set1, set2;
+  unsigned int startNode = 0;
+  color[startNode] = 1;
+ 
+  // Create a queue (FIFO) of vertex 
+  // numbers and enqueue source vertex
+  // for BFS traversal
+  std::queue<unsigned int> queue;
+  queue.push(startNode);
+  set1.push_back(startNode);
 
-  for (uint v = 0; v < num_nodes; ++v) {
-    if (color[v] == -1) {
-      // Assign color 0 to the source vertex
-      color[v] = 0;
-      set1.push_back(v);
-      std::queue<uint> q;
-      q.push(v);
+  // Run while there are vertices 
+  // in queue (Similar to BFS)
+  while (!queue.empty())
+  {
+      // Dequeue a vertex from queue ( Refer http://goo.gl/35oz8 )
+      unsigned int u = queue.front();
+      queue.pop();
 
-      while (!q.empty()) {
-        uint u = q.front();
-        q.pop();
+      // Return false if there is a self-loop 
+      if (g.getEdgeWeight(u,u) > 1)
+      return "0";
 
-        // Check for adjacent vertices with the same color
-        for (uint neighbor = 0; neighbor < num_nodes; neighbor++) {
-          if (adj_matrix[u][neighbor] == 1 && color[neighbor] == color[u]) {
-            return "0"; // Not Bipartite (adjacent with same color)
+      // Find all non-colored adjacent vertices
+      for (unsigned int v = 0; v < numVertices; ++v)
+      {
+          // An edge from u to v exists and 
+          // destination v is not colored
+          if (g.getEdgeWeight(u,v) && color[v] == -1)
+          {
+              // Assign alternate color to this adjacent v of u
+              color[v] = 1 - color[u];
+              if(color[v]) {
+                set1.push_back(v);
+              } else {
+                set2.push_back(v);
+              }
+              queue.push(v);
           }
 
-          // Assign alternate color to uncolored adjacent vertices
-          if (adj_matrix[u][neighbor] == 1 && color[neighbor] == -1) {
-            color[neighbor] = 1 - color[u];
-            if (color[neighbor] == 0) {
-              set1.push_back(neighbor);
-            } else {
-              set2.push_back(neighbor);
-            }
-            q.push(neighbor);
-          }
-        }
+          // An edge from u to v exists and destination 
+          // v is colored with same color as u
+          else if (g.getEdgeWeight(u,v) && color[v] == color[u])
+            return "0";
       }
-    }
   }
 
   std::stringstream ss;
