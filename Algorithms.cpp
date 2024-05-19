@@ -1,3 +1,7 @@
+// israelmor555@gmail.com
+// 206508954
+
+
 #include "Algorithms.hpp"
 #include <iostream>
 #include <sstream> 
@@ -7,6 +11,7 @@
 #include <stack>
 #include <vector>
 #include <cstdlib>
+#include <algorithm>
 
 
 bool ariel::Algorithms::isConnected(ariel::Graph g) {
@@ -72,9 +77,6 @@ bool ariel::Algorithms::isContainsCycle(ariel::Graph g) {
 }
 
 
-bool ariel::NodeComparator::operator()(const ariel::Node& a, const ariel::Node& b) const {
-  return a.distance > b.distance;
-}
 
 
 std::string ariel::Algorithms::shortestPath(const ariel::Graph g, unsigned int startNode, unsigned int endNode) {
